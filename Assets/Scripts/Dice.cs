@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
+    Rigidbody rigidBody;
+
     public void Toss(Vector3 direction) {
-        Rigidbody rigidBody = GetComponent<Rigidbody>();
-        Vector3 diceVelocity = rigidBody.velocity;
+        rigidBody = GetComponent<Rigidbody>();
 
         float directionX = Random.Range(0, 500);
         float directionY = Random.Range(0, 500);
@@ -14,5 +15,11 @@ public class Dice : MonoBehaviour
 
         rigidBody.AddForce((direction - transform.position) * 100);
         rigidBody.AddTorque(directionX, directionY, directionZ);
+    }
+
+    private void OnCollisionStay(Collision other) {
+        if(rigidBody.velocity == Vector3.zero) {
+            Debug.Log("Stoped: " + gameObject.name + " " + other.gameObject.name);
+        }
     }
 }
