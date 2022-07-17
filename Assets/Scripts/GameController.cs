@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     public GameObject directionIndicator;
     public GameObject player;
 
+    public int playerDiceCount = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +26,9 @@ public class GameController : MonoBehaviour
     }
 
     void TossDice() {
-        Dice dice = Instantiate(dicePrefab, player.transform.position, Quaternion.identity);
-        Dice dice2 = Instantiate(dicePrefab, player.transform.position, Quaternion.identity);
-        Dice dice3 = Instantiate(dicePrefab, player.transform.position, Quaternion.identity);
-        Debug.Log(directionIndicator.transform.position);
-        dice.Toss(directionIndicator.transform.position);
-        dice2.Toss(directionIndicator.transform.position);
-        dice3.Toss(directionIndicator.transform.position);
+        for(int i = 0; i < playerDiceCount; i++) {
+            Dice dice = Instantiate(dicePrefab, player.transform.position, Quaternion.identity);
+            dice.Toss(directionIndicator.transform.position);
+        }
     }
 }

@@ -12,7 +12,7 @@ public class Dice : MonoBehaviour
         float directionY = Random.Range(0, 500);
         float directionZ = Random.Range(0, 500);
 
-        rigidBody.AddForce((direction - transform.position) * 200);
+        rigidBody.AddForce((direction - transform.position) * 100);
         rigidBody.AddTorque(directionX, directionY, directionZ);
     }
 }
